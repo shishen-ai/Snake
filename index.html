@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake — Neon Arcade</title>
+  <meta name="description" content="A premium, neon-styled Snake game with login, scores, and a stunning dark UI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="orb orb-cyan"></div>
+  <div class="orb orb-fuchsia"></div>
+
+  <!-- ===================== LOGIN SCREEN ===================== -->
+  <section id="login-screen" class="screen active">
+    <div class="glass-panel">
+      <h1 class="gradient-title">🐍 Snake</h1>
+      <p class="subtitle">Neon Arcade</p>
+
+      <div class="form-group">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" placeholder="Enter your username" autocomplete="username" />
+      </div>
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" />
+      </div>
+
+      <p id="auth-error" class="error-msg"></p>
+
+      <div class="btn-row">
+        <button id="btn-login" class="btn-neon">Login</button>
+        <button id="btn-register" class="btn-neon btn-outline">Register</button>
+      </div>
+
+      <div class="divider"><span>or</span></div>
+
+      <button id="btn-guest" class="btn-neon btn-ghost">Play as Guest</button>
+    </div>
+  </section>
+
+  <!-- ===================== GAME SCREEN ===================== -->
+  <section id="game-screen" class="screen">
+    <div class="glass-panel game-panel">
+      <div class="game-header">
+        <h1 class="gradient-title title-sm">🐍 Snake</h1>
+        <div class="user-badge" id="user-badge"></div>
+      </div>
+
+      <div class="score-bar">
+        <span class="score-label">Score</span>
+        <span class="score-value" id="score-value">0</span>
+        <span class="best-label">Best</span>
+        <span class="best-value" id="best-value">0</span>
+      </div>
+
+      <div class="canvas-wrapper">
+        <canvas id="game-canvas" width="400" height="400"></canvas>
+        <div id="game-overlay" class="game-overlay">
+          <p id="overlay-text" class="overlay-text">Press Start to Play</p>
+          <div id="overlay-score" class="overlay-score"></div>
+        </div>
+      </div>
+
+      <!-- Mobile d-pad -->
+      <div class="dpad" id="dpad">
+        <button class="dpad-btn dpad-up" data-dir="up">▲</button>
+        <div class="dpad-mid-row">
+          <button class="dpad-btn dpad-left" data-dir="left">◀</button>
+          <button class="dpad-btn dpad-center"></button>
+          <button class="dpad-btn dpad-right" data-dir="right">▶</button>
+        </div>
+        <button class="dpad-btn dpad-down" data-dir="down">▼</button>
+      </div>
+
+      <div class="btn-row game-btns">
+        <button id="btn-start" class="btn-neon">Start</button>
+        <button id="btn-pause" class="btn-neon btn-outline" disabled>Pause</button>
+        <button id="btn-records" class="btn-neon btn-outline">Records</button>
+      </div>
+
+      <button id="btn-logout" class="btn-link">Logout</button>
+    </div>
+  </section>
+
+  <!-- ===================== RECORDS SCREEN ===================== -->
+  <section id="records-screen" class="screen">
+    <div class="glass-panel records-panel">
+      <h1 class="gradient-title title-sm">🏆 Records</h1>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+        <button class="tab" data-tab="history">My History</button>
+        <button class="tab" data-tab="logins">Login Log</button>
+      </div>
+
+      <!-- Leaderboard -->
+      <div id="tab-leaderboard" class="tab-content active">
+        <table class="records-table" id="leaderboard-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="leaderboard-empty" class="empty-msg">No scores yet. Be the first!</p>
+      </div>
+
+      <!-- Personal History -->
+      <div id="tab-history" class="tab-content">
+        <table class="records-table" id="history-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Score</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="history-empty" class="empty-msg">You haven't played any games yet.</p>
+      </div>
+
+      <!-- Login Log -->
+      <div id="tab-logins" class="tab-content">
+        <table class="records-table" id="logins-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Login Time</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="logins-empty" class="empty-msg">No login records.</p>
+      </div>
+
+      <div class="btn-row" style="margin-top:1.5rem;">
+        <button id="btn-back" class="btn-neon">Back to Game</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
